@@ -67,7 +67,7 @@ public class Vaciado {
 
         }
 
-        return this.minino-1;
+        return (this.minino < 0) ? -1 : this.minino-1;
         // aqui comprobaremos que no se halla hecho ya los pasos para evitar repetirlos.
     }
 
@@ -89,6 +89,7 @@ public class Vaciado {
         if(this.minino > n || this.minino == -1){
             this.minino = n;
         }
+
         return this.minino;
 
     }

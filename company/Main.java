@@ -8,7 +8,7 @@ public class Main {
 	// write your code here
 
         Vaciado v = new Vaciado();
-        System.out.print(v.comparaVaso(2,4,3,0,0,0));
+        System.out.print(v.comparaVaso(8,4,2,0,0,0));
 
     }
 
