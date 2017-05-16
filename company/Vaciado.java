@@ -6,7 +6,7 @@ package com.company;
 public class Vaciado {
 
     String anteriores = "";
-    int minino = -1;
+    int minino = -1, a,b,c,d,e,f;
 
     // debe llegar siempre x como vaso de mayor capacidad para evitar comparaciones.
     public int comparaVaso(int x, int z, int c, int xTemp, int zTemp, int pasos){
@@ -20,37 +20,35 @@ public class Vaciado {
         }else if(x < c){
             return -1;
         }else if(xTemp == c || zTemp == c){// si el vaciado de uno de los vasos en otro es igual a c debe salirse
-            this.getMinino(pasos);
-        }else if(pasos == (x*z)){
-            return  -1;
+          getMinino(pasos);
         }else{
             // Si vienen vacios se debe llenar solo uno de los dos
             // de otro modo podria vaciar uno de los dos
             if (xTemp  == 0 && zTemp == 0){
-                this.getMinino(comparaVaso(x,z,c,0,z, pasos+1));
+                a = comparaVaso(x,z,c,0,z, 0);
             }else{
                 // vaciamos x
                 if(this.pasoHecho("-"+0+"."+zTemp+"-")){
-                    this.getMinino(comparaVaso(x,z,c,0,zTemp, pasos+1));
+                    a = comparaVaso(x,z,c,0,zTemp, pasos+1);
                 }
             }
 
             if (xTemp  == 0 && zTemp == 0){
-                this.getMinino(comparaVaso(x,z,c,x,0, pasos+1));
+                b = comparaVaso(x,z,c,x,0, 0);
             }else{
                 // vaciamos z
                 if(this.pasoHecho("-"+xTemp+"."+0+"-")){
-                    this.getMinino(comparaVaso(x,z,c,xTemp,0, pasos+1));
+                    b = comparaVaso(x,z,c,xTemp,0, pasos+1);
                 }
             }
 
             // llenamos x
             if(this.pasoHecho("-"+x+"."+zTemp+"-")){
-                this.getMinino(comparaVaso(x,z,c,x,zTemp, pasos+1));
+                c = comparaVaso(x,z,c,x,zTemp, pasos+1);
             }
             // llenamos z
             if(this.pasoHecho("-"+xTemp+"."+z+"-")){
-                this.getMinino(comparaVaso(x,z,c,xTemp,z, pasos+1));
+                d =comparaVaso(x,z,c,xTemp,z, pasos+1);
             }
 
             if (xTemp > z && zTemp == 0) {auxX = xTemp - z; auxZ = z;}
@@ -62,12 +60,12 @@ public class Vaciado {
             else if (xTemp == 0) {auxX = zTemp; auxZ = 0; }
 
             if(this.pasoHecho("-"+auxX+"."+auxZ+"-")){
-                 this.getMinino(comparaVaso(x,z,c,auxX,auxZ,pasos+1));
+                e = comparaVaso(x,z,c,auxX,auxZ,pasos+1);
             }
 
         }
 
-        return this.minino;
+        return this.minino-1;
         // aqui comprobaremos que no se halla hecho ya los pasos para evitar repetirlos.
     }
 
@@ -89,7 +87,6 @@ public class Vaciado {
         if(this.minino > n || this.minino == -1){
             this.minino = n;
         }
-        System.out.println(this.minino);
         return this.minino;
 
     }
