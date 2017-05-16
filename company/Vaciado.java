@@ -19,6 +19,8 @@ public class Vaciado {
             return 1;
         }else if(x < c){
             return -1;
+        }else if( (x%2 == 0) && (z%2 == 0) && (c%2 == 1) ){
+            return -1;
         }else if(xTemp == c || zTemp == c){// si el vaciado de uno de los vasos en otro es igual a c debe salirse
           getMinino(pasos);
         }else{
